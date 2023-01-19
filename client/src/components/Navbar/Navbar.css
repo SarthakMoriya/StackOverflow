@@ -75,3 +75,39 @@
 }
 
 .nav-link:hover{ background-color: #d3e4eb;}
+
+@media  screen and (max-width: 1024px){
+    .navbar form{
+        flex-grow:0;
+    }
+}
+@media  screen and (max-width: 768px){
+    .main-nav{
+        /* justify-content: start; */
+    }
+    .navbar form{
+        display: none;
+    }
+}
+
+@media  screen and (max-width: 320px){
+    .navbar {
+        flex-wrap: wrap;
+    }
+}
+@media  screen and (max-width: 550px){
+    .navbar {
+        flex-wrap: wrap;
+    }
+}
+@media  screen and (max-width: 960px){
+    .navbar form input {
+        min-width: 50%;
+        margin: 0;
+        padding: 8px 10px 8px 31px;
+        font-size: 13px;
+        border: 1px solid #000000e3;
+        border-radius: 3px;
+    }
+}
+

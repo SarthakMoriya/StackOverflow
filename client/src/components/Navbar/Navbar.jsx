@@ -1,4 +1,4 @@
-import decode from 'jwt-decode';
+import decode from "jwt-decode";
 import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -13,19 +13,19 @@ import "./Navbar.css";
 const Navbar = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.currentUserReducer);
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
-  const handleLogout=()=>{
-    dispatch({type:"LOGOUT"})
-    navigate('/')
-    dispatch(setCurrentUser(null))
-  }
+  const handleLogout = () => {
+    dispatch({ type: "LOGOUT" });
+    navigate("/");
+    dispatch(setCurrentUser(null));
+  };
 
   useEffect(() => {
-    const token=user?.token;
-    if(token){
-      const decodedToken=decode(token);
-      if(decodedToken.exp * 1000 <new Date().getTime()){
+    const token = user?.token;
+    if (token) {
+      const decodedToken = decode(token);
+      if (decodedToken.exp * 1000 < new Date().getTime()) {
         handleLogout();
       }
     }
@@ -61,23 +61,25 @@ const Navbar = () => {
           </Link>
         ) : (
           <>
-            <Link
-              to={`/users/${user.user._id}`}
-              style={{ textDecoration: "none" }}
-            >
-              <Avatar
-                backgroundColor="#009dff"
-                px="10px"
-                py="7px"
-                borderRadius="50%"
-                color="white"
+            
+              <Link
+                to={`/users/${user.user._id}`}
+                style={{ textDecoration: "none" }}
               >
-                {user.user.name[0]}
-              </Avatar>
-            </Link>
-            <button className="nav-link nav-item" onClick={handleLogout}>
-              {user === null ? "Log in" : "Log out"}
-            </button>
+                <Avatar
+                  backgroundColor="#009dff"
+                  px="10px"
+                  py="7px"
+                  borderRadius="50%"
+                  color="white"
+                >
+                  {user.user.name[0]}
+                </Avatar>
+              </Link>
+              <button className="nav-link nav-item" onClick={handleLogout}>
+                {user === null ? "Log in" : "Log out"}
+              </button>
+        
           </>
         )}
       </div>

@@ -84,3 +84,37 @@
     font-size: 13px;
     cursor: pointer;
 }
+
+@media screen and (max-width:425px){
+    .auth-container-1{
+        display: none;
+    }
+
+    .auth-section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 93vw;
+        min-height: 100vh;
+        margin: 0 auto;
+        background-color: #f1f2f3;
+    }
+
+    .auth-container-2 {
+        min-width: 20%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        top: 90px;
+        position: absolute;
+    }
+    
+}
+
+@media screen and (max-width: 835px) {
+    .auth-container-1 {
+        padding: 20px;
+        margin-right: 5px;
+    }
+}

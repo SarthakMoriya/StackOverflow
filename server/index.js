@@ -6,6 +6,7 @@ import dotenv from 'dotenv';
 import userRoutes from './routes/userRoutes.js'
 import questionRouter from './routes/QuestionRoutes.js'
 import answerRoutes from './routes/answerRoutes.js';
+import postRouter from './routes/postRoutes.js';
 
 dotenv.config({path:'./config.env'})
 const app = express();
@@ -19,6 +20,11 @@ app.use(cors())
 app.use('/user',userRoutes)
 app.use('/questions',questionRouter)
 app.use('/answer',answerRoutes)
+app.use('/post',postRouter)
+
+app.get('/',(req,res)=>{
+    res.send("Hello from backend")
+})
 
 // DATABASE CONNECTION 
 const PORT=process.env.PORT 

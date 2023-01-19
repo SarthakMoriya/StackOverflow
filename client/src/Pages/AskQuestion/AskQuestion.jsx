@@ -91,7 +91,7 @@ const AskQuestion = () => {
             type="submit"
             value="Review your Question"
             className="review-btn"
-          ></button>
+          >Post</button>
         </form>
       </div>
     </div>
