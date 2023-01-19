@@ -28,4 +28,8 @@ export const updateProfile = (id, updateData) => API.patch(`/user/updateprofile/
 export const fetchAllPosts = () => API.get('/post/get');
 export const createPost = (postBody) => API.post('/post/create', postBody);
 
-export const updatePostLikes=(userId,postId)=>API.patch('/post/likePost',{postId,userId})
+export const updatePostLikes = (userId, postId) => API.patch('/post/likePost', { postId, userId })
+
+export const addFriend = (userId, friendId) => API.patch('/user/addFriend', { userId, friendId })
+export const removeFriend = (userId, friendId) => API.patch('/user/removeFriend', { userId, friendId })
+// export const getCurrentUser = (userId) => API.get('/user/getcurrentuser', { userId })

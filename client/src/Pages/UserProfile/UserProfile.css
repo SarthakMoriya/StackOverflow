@@ -1,4 +1,4 @@
-.user-details-container{
+.user-details-container {
     width: 100%;
     margin-top: 50px;
     display: flex;
@@ -6,18 +6,20 @@
     justify-content: space-between;
 }
 
-.user-details{
+.user-details {
     display: flex;
     align-items: flex-start;
 }
 
-.user-name{
+.user-name {
     padding-left: 20px;
 }
+
 .user-name p {
     color: #7e7e7e;
 }
-.edit-profile-btn{
+
+.edit-profile-btn {
     padding: 8px 10px;
     border: solid 1px #7e7e7e;
     border-radius: 2px;
@@ -25,38 +27,45 @@
     cursor: pointer;
     transition: 0.3s;
 }
-.edit-profile-btn:hover{
+
+.edit-profile-btn:hover {
     background-color: #f5f9fc;
 }
-.edit-profile-title{
+
+.edit-profile-title {
     padding: 20px 0px;
     border-bottom: solid 1px #dbd9d9;
 }
-.edit-profile-title-2{
+
+.edit-profile-title-2 {
     color: grey;
     font-weight: 400;
 }
+
 .edit-profile-form {
     padding: 20px;
     border: solid 1px #dbd9d9;
     border-radius: 5px;
 }
-.edit-profile-form label h3{
+
+.edit-profile-form label h3 {
     margin: 0%;
     padding: 3px 0px;
 }
-.edit-profile-form label p{
+
+.edit-profile-form label p {
     margin: 0%;
     padding: 3px 0px;
 }
-.edit-profile-form label input, .edit-profile-form label textarea{
+
+.edit-profile-form label input, .edit-profile-form label textarea {
     padding: 5px;
     margin-bottom: 20px;
     border: solid 1px #dbd9d9;
     width: 50%;
 }
 
-.user-submit-btn{
+.user-submit-btn {
     padding: 14px 10px;
     background-color: #0a95ff;
     color: white;
@@ -66,15 +75,29 @@
     cursor: pointer;
 }
 
-.user-submit-btn:hover{
+.user-submit-btn:hover {
     background-color: #0074cc;
 }
 
-.user-cancel-btn{
+.user-cancel-btn {
     padding: 14px 10px;
     color: #0a95ff;
     background-color: transparent;
     /* border: none; */
     margin-left: 10px;
     cursor: pointer;
+}
+
+.ask-btn {
+    padding: 10px 15px;
+    border-radius: 4px;
+    background-color: #009bff;
+    color: white;
+    border: none;
+    text-decoration: none;
+    transition: .3s;
+}
+
+.ask-btn:hover {
+    background-color: #0086d8;
 }
