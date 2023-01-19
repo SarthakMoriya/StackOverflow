@@ -5,7 +5,7 @@ export const askQuestion = async (req, res) => {
     try {
         const postQuestionBody = req.body;
         const postedQuestion = await Questions.create(postQuestionBody)
-
+        console.log(req.body)
         res.status(200).json({
             status: 'Success',
             data: postedQuestion
@@ -18,7 +18,6 @@ export const askQuestion = async (req, res) => {
 export const getAllQuestions = async (req, res) => {
     try {
         const questions = await Questions.find();
-
         res.status(200).json(questions)
     } catch (err) { console.log(err); }
 }

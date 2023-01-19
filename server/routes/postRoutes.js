@@ -1,9 +1,9 @@
-import express  from "express";
-import { getAllPosts,createPost } from "../controllers/Posts.js";
+import express from "express";
+import { getAllPosts, likePost } from "../controllers/Posts.js";
 
-const postRouter=express.Router();
+const postRouter = express.Router();
 
-postRouter.get('/get',getAllPosts)
-postRouter.post('/create',createPost)
+postRouter.get('/get', getAllPosts)
+postRouter.patch('/likePost', likePost)
 
 export default postRouter

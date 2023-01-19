@@ -8,7 +8,7 @@ const LeftSidebar = () => {
   return (
     <div className="left-sidebar">
       <nav className="side-nav">
-        <NavLink to="/" className="side-nav-links" activeClassName="active">
+        <NavLink to="/" className="side-nav-links" >
           <p>Home</p>
         </NavLink>
         <div className="side-nav-div">
@@ -19,13 +19,13 @@ const LeftSidebar = () => {
             <img src={Globe} alt="Globe" />
             <p style={{ paddingLeft: "10px" }}>Questions</p>
           </NavLink>
-          <NavLink to="/tags" className="side-nav-links" activeClassName='active' style={{ paddingLeft: "40px" }}>
+          <NavLink to="/tags" className="side-nav-links" style={{ paddingLeft: "40px" }}>
             <p>Tags</p>
             </NavLink>
-          <NavLink to="/users" className="side-nav-links" activeClassName='active' style={{ paddingLeft: "40px" }}>
+          <NavLink to="/users" className="side-nav-links"  style={{ paddingLeft: "40px" }}>
             <p>Users</p>
             </NavLink>
-          <NavLink to="/posts" className="side-nav-links" activeClassName='active' style={{ paddingLeft: "40px" }}>
+          <NavLink to="/posts" className="side-nav-links"  style={{ paddingLeft: "40px" }}>
             <p>Community</p>
             </NavLink>
         </div>

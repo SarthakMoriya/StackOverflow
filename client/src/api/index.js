@@ -25,4 +25,7 @@ export const fetchAllUsers = () => API.get('/user/getallusers');
 export const updateProfile = (id, updateData) => API.patch(`/user/updateprofile/${id}`, { ...updateData })
 
 
-export const getPosts = () => API.get('/post/get');
+export const fetchAllPosts = () => API.get('/post/get');
+export const createPost = (postBody) => API.post('/post/create', postBody);
+
+export const updatePostLikes=(userId,postId)=>API.patch('/post/likePost',{postId,userId})

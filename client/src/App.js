@@ -19,7 +19,8 @@ import AskQuestion from './Pages/AskQuestion/AskQuestion';
 import DisplayQuestion from './Pages/Questions/DisplayQuestion';
 import { fetchAllQuestions } from './actions/Question';
 import { fetchAllUsers } from './actions/Users';
-import {getAllPosts} from './actions/Posts'
+import {fetchAllPosts} from './actions/Posts'
+import CreatePost from './Pages/Posts/CreatePost';
 
 function App() {
   const dispatch = useDispatch()
@@ -27,7 +28,7 @@ function App() {
     console.log("In App");
     dispatch(fetchAllQuestions())
     dispatch(fetchAllUsers())
-    dispatch(getAllPosts())
+    dispatch(fetchAllPosts())
   }, [dispatch])
 
   return (
@@ -39,6 +40,7 @@ function App() {
         <Route path="/tags" element={<Tags />} />
         <Route path="/users" element={<Users />} />
         <Route path="/posts" element={<Posts />} />
+        <Route path="/posts/createPost" element={<CreatePost />} />
         <Route path="/about" element={<About />} />
         <Route path="/auth" element={<Auth />} />
         <Route path="/questions" element={<Question />} />

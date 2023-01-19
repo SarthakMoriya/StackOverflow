@@ -16,7 +16,7 @@ export const getAllUsers = async (req, res) => {
 
             })
         })
-        console.log(allUsersDetails);
+        // console.log(allUsersDetails);
         res.status(200).json(allUsersDetails);
     } catch (e) {
         console.log(e);
@@ -27,7 +27,7 @@ export const getAllUsers = async (req, res) => {
 export const updateProfile = async (req, res) => {
     const { id: _id } = req.params;
     const { name, about, tags } = req.body;
-    console.log(name,about,tags);
+    // console.log(name,about,tags);
 
     if(!mongoose.Types.ObjectId.isValid(_id)){
         return res.status(404).send('question unavailable...');
