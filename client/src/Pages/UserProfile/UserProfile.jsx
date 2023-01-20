@@ -8,17 +8,16 @@ import { useNavigate, useParams } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import moment from "moment";
 
-
 import LeftSidebar from "../../components/LeftSidebar/LeftSidebar";
 import Avatar from "../../components/Avatar/Avatar";
 import ProfileBio from "./ProfileBio";
 import EditProfileForm from "./EditProfileForm";
 import { useEffect } from "react";
 
-import { addFriendOp, getCurrentUserOp, removeFriendOp } from "../../actions/Users";
+import { addFriendOp, removeFriendOp } from "../../actions/Users";
 
 const UserProfile = () => {
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [friend, setFriend] = useState(false);
   const User = useSelector((state) => state.currentUserReducer);
@@ -26,7 +25,7 @@ const UserProfile = () => {
   const users = useSelector((state) => state.userReducer);
   const currentProfile = users.filter((user) => user._id === id)[0];
   const currentUser = useSelector((state) => state.currentUserReducer);
-  let latestUser=useSelector((state) => state.latestUserReducer);
+  // let latestUser=useSelector((state) => state.latestUserReducer);
   const [Switch, setSwitch] = useState(false);
 
   const handleSwitch = () => {
@@ -46,17 +45,16 @@ const UserProfile = () => {
 
   const handleRemove = () => {
     dispatch(removeFriendOp(User.user._id, id));
-    alert("New Friends will be seen on LogIn ")
-    navigate('/auth')
+    alert("New Friends will be seen on LogIn ");
+    navigate("/auth");
     // dispatch(getCurrentUserOp(User.user._id))
-    
+
     // setFriend(false);
-    
   };
   const handleAdd = () => {
     dispatch(addFriendOp(User.user._id, id));
-    alert("New Friends will be seen on LogIn ")
-    navigate('/auth')
+    alert("New Friends will be seen on LogIn ");
+    navigate("/auth");
     // setFriend(true);
   };
 
@@ -84,7 +82,7 @@ const UserProfile = () => {
                 </p>
               </div>
             </div>
-            {currentUser.user._id === id && (
+            {/* {currentUser.user._id === id && (
               <button
                 type="button"
                 onClick={handleSwitch}
@@ -93,13 +91,35 @@ const UserProfile = () => {
                 <FontAwesomeIcon icon={faPen} />
                 {!Switch ? "Edit Profile" : "Cancel"}
               </button>
+            )} */}
+            {currentUser.user._id === id ? (
+              <button
+                type="button"
+                onClick={handleSwitch}
+                className={!Switch ? "edit-profile-btn" : "edit-profile-btn"}
+              >
+                <FontAwesomeIcon icon={faPen} />
+                {!Switch ? "Edit Profile" : "Cancel"}
+              </button>
+            ) : friend ? (
+              <button className="ask-btn" onClick={handleRemove}>
+                Remove Friend
+              </button>
+            ) : (
+              <button className="ask-btn" onClick={handleAdd}>
+                Add Friend
+              </button>
             )}
 
-            {friend ? (
-              <button className="ask-btn" onClick={handleRemove}>Remove Friend</button>
+            {/* {currentUser.user._id !== id && friend ? (
+              <button className="ask-btn" onClick={handleRemove}>
+                Remove Friend
+              </button>
             ) : (
-              <button className="ask-btn" onClick={handleAdd}>Add Friend</button>
-            )}
+              <button className="ask-btn" onClick={handleAdd}>
+                Add Friend
+              </button>
+            )} */}
           </div>
           <>
             {Switch ? (

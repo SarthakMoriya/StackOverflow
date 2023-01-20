@@ -4,6 +4,8 @@ const postReducer = (state = { data: null }, action) => {
             return { ...state, data: action.payload }
         case 'CREATE_POST':
             return { ...state }
+        case 'CREATE_BLOG':
+            return { ...state }
         default:
             return { ...state }
     }

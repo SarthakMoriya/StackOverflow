@@ -4,7 +4,7 @@
     background-color: #009bff;
     color: white;
     border: none;
-    text-decoration:none;
+    text-decoration: none;
     transition: .3s;
     cursor: pointer;
     width: 25%;
@@ -13,50 +13,77 @@
 
 }
 
-.post-container-main{
+.post-container-main {
     /* border:2px solid black; */
-    margin-top:70px;
+    margin-top: 70px;
     /* display: flex;
     justify-content:center;
     align-items:center; */
     /* width: 55%; */
 }
 
-.post-container-main .image{
+.post-container-main .image {
     border: 1px solid black;
     height: 30vh;
     background-repeat: no-repeat;
     background-size: contain;
+
 }
 
-.single-posts{
+.single-posts {
     margin: 10px;
     border: 1px solid black;
+    /* From https://css.glass */
+    background: rgba(231, 212, 212, 0.54);
+    border-radius: 16px;
+    /* box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); */
+    backdrop-filter: blur(10.2px);
+    -webkit-backdrop-filter: blur(10.2px);
+    border: 1px solid rgba(142, 92, 92, 1);
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
 }
 
-.description{
+.description {
     text-transform: uppercase;
     margin: 4px;
 }
 
-.like-comment{
-    display:flex;
+.like-comment {
+    display: flex;
     align-items: center;
-    justify-content:space-around;
+    justify-content: space-around;
 }
 
-.icons-post{
+.icons-post {
     transform: scale(1.5);
     margin: 5px 10px;
 }
 
-.like-comment svg{
+.like-comment svg {
     cursor: pointer;
     background-color: white;
 }
 
-.post-image{
-    width: 512px;
+.post-image {
+    /* width: 512px; */
     height: 512px;
+    width: 100%;
     background-size: cover;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    font-weight: bold;
+    padding: 15px;
+}
+
+.description-blog {
+    padding: 30px;
+}
+
+.description-blog p {
+    word-break: break-all;
 }

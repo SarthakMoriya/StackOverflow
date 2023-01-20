@@ -1,0 +1,14 @@
+.post-options{
+    display: flex;
+    justify-content:space-around;
+    align-items:center;
+    flex-direction:column;
+    width: 100%;
+    border: 1px solid black;
+    height: 60vh;
+    border-radius: 5px;
+    background-color:rgb(188, 183, 183)
+}
+.post-options button{
+    padding: 10px;
+}

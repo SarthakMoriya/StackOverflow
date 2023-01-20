@@ -2,19 +2,20 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./PostAnswer.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart, faShare, faComment } from "@fortawesome/free-solid-svg-icons";
+import { faHeart, faShare } from "@fortawesome/free-solid-svg-icons";
 import copy from "copy-to-clipboard";
 import { useNavigate } from "react-router-dom";
-import { likeAPost } from "../../actions/Posts";
+import { likeAPost, likeABlog } from "../../actions/Posts";
 
 const PostMainBar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const url = "http://localhost:3000/posts";
   const posts = useSelector((state) => state.postReducer);
+  const blogs = useSelector((state) => state.blogReducer);
   const user = useSelector((state) => state.currentUserReducer);
   const userId = user.user._id;
-  console.log(posts);
+  // console.log(posts);
 
   const handleShare = (postId) => {
     copy(url + postId);
@@ -22,11 +23,14 @@ const PostMainBar = () => {
   };
 
   const handleCreatePost = () => {
-    navigate("/posts/createPost");
+    navigate("/posts/createPostForCommunity");
   };
 
   const handleLikes = (postId) => {
     dispatch(likeAPost(userId, postId));
+  };
+  const handleBlogLikes = (postId) => {
+    dispatch(likeABlog(userId, postId));
   };
 
   return (
@@ -49,7 +53,6 @@ const PostMainBar = () => {
       <div className="post-container-main">
         {posts.data.map((post) => (
           <div key={post._id} className="single-posts">
-            {/* <div className="image">{post.imageUrl}</div> */}
             <img
               src={`http://localhost:5000/${post.imageUrl}`}
               alt=""
@@ -79,10 +82,35 @@ const PostMainBar = () => {
                 onClick={() => handleShare(post._id)}
                 className="icons-post"
               />
-             
             </div>
           </div>
         ))}
+        {blogs.data.map((post) => (
+          <div key={post._id} className="single-posts">
+            <div className="title">{post.title}</div>
+            <div className="description-blog">
+              <p>{post.description}</p>
+            </div>
+            <div className="like-comment">
+              <div className="">
+                <FontAwesomeIcon
+                  icon={faHeart}
+                  className="icons-post"
+                  onClick={() => {
+                    handleBlogLikes(post._id);
+                  }}
+                />
+                <div>{post.likes.length} likes</div>
+              </div>
+              <FontAwesomeIcon
+                icon={faShare}
+                onClick={() => handleShare(post._id)}
+                className="icons-post"
+              />
+            </div>
+          </div>
+        ))}
+        {/* {blogs.data?<h1>LUND</h1>:<h3>LODA</h3>} */}
       </div>
     </div>
   );

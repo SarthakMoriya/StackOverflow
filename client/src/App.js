@@ -19,8 +19,10 @@ import AskQuestion from './Pages/AskQuestion/AskQuestion';
 import DisplayQuestion from './Pages/Questions/DisplayQuestion';
 import { fetchAllQuestions } from './actions/Question';
 import { fetchAllUsers } from './actions/Users';
-import {fetchAllPosts} from './actions/Posts'
+import {fetchAllPosts,fetchAllBlogs} from './actions/Posts'
 import CreatePost from './Pages/Posts/CreatePost';
+import CreatePostOption from './Pages/Posts/CreatePostOption';
+import CreateBlogPost from './Pages/Posts/CreateBlogPost';
 
 function App() {
   const dispatch = useDispatch()
@@ -29,6 +31,7 @@ function App() {
     dispatch(fetchAllQuestions())
     dispatch(fetchAllUsers())
     dispatch(fetchAllPosts())
+    dispatch(fetchAllBlogs())
   }, [dispatch])
 
   return (
@@ -41,6 +44,8 @@ function App() {
         <Route path="/users" element={<Users />} />
         <Route path="/posts" element={<Posts />} />
         <Route path="/posts/createPost" element={<CreatePost />} />
+        <Route path="/posts/createBlogPost" element={<CreateBlogPost />} />
+        <Route path="/posts/createPostForCommunity" element={<CreatePostOption />} />
         <Route path="/about" element={<About />} />
         <Route path="/auth" element={<Auth />} />
         <Route path="/questions" element={<Question />} />
