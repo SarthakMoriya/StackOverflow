@@ -31,7 +31,7 @@
 }
 
 .single-posts {
-    margin: 10px;
+    margin: 0 0 35px 0;
     border: 1px solid black;
     /* From https://css.glass */
     background: rgba(231, 212, 212, 0.54);
@@ -86,4 +86,16 @@
 
 .description-blog p {
     word-break: break-all;
+}
+
+@media screen and (max-width: 426px) {
+    .post-container-main {
+        /* border: 2px solid black; */
+        margin-top: 70px;
+        width: 132%;
+    }
+
+    .post-image{
+        height: 250px;
+    }
 }

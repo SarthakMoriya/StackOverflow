@@ -23,7 +23,7 @@ const UserProfile = () => {
   const User = useSelector((state) => state.currentUserReducer);
   const { id } = useParams();
   const users = useSelector((state) => state.userReducer);
-  const currentProfile = users.filter((user) => user._id === id)[0];
+  const currentProfile = users.filter((user) => user?._id === id)[0];
   const currentUser = useSelector((state) => state.currentUserReducer);
   // let latestUser=useSelector((state) => state.latestUserReducer);
   const [Switch, setSwitch] = useState(false);
@@ -35,7 +35,7 @@ const UserProfile = () => {
   useEffect(() => {
     const fetchFriends = () => {
       let userFriends = User?.user?.friends;
-      const isFriend = userFriends.findIndex((user) => user === id);
+      const isFriend = userFriends?.findIndex((user) => user === id);
       if (isFriend !== -1) {
         setFriend(true);
       }
@@ -44,15 +44,14 @@ const UserProfile = () => {
   }, [dispatch]);
 
   const handleRemove = () => {
-    dispatch(removeFriendOp(User.user._id, id));
+    dispatch(removeFriendOp(User?.user?._id, id));
     alert("New Friends will be seen on LogIn ");
     navigate("/auth");
-    // dispatch(getCurrentUserOp(User.user._id))
 
     // setFriend(false);
   };
   const handleAdd = () => {
-    dispatch(addFriendOp(User.user._id, id));
+    dispatch(addFriendOp(User?.user?._id, id));
     alert("New Friends will be seen on LogIn ");
     navigate("/auth");
     // setFriend(true);
@@ -72,27 +71,17 @@ const UserProfile = () => {
                 py="30px"
                 px="40px"
               >
-                {currentProfile.name[0]}
+                {currentProfile?.name[0]}
               </Avatar>
               <div className="user-name">
-                <h1>{currentProfile.name}</h1>
+                <h1>{currentProfile?.name}</h1>
                 <p>
                   <FontAwesomeIcon icon={faBirthdayCake} /> Joined{" "}
-                  {moment(currentProfile.joinedOn).fromNow()}
+                  {moment(currentProfile?.joinedOn).fromNow()}
                 </p>
               </div>
             </div>
-            {/* {currentUser.user._id === id && (
-              <button
-                type="button"
-                onClick={handleSwitch}
-                className={!Switch ? "edit-profile-btn" : "edit-profile-btn"}
-              >
-                <FontAwesomeIcon icon={faPen} />
-                {!Switch ? "Edit Profile" : "Cancel"}
-              </button>
-            )} */}
-            {currentUser.user._id === id ? (
+            {currentUser?.user?._id === id ? (
               <button
                 type="button"
                 onClick={handleSwitch}
@@ -110,16 +99,6 @@ const UserProfile = () => {
                 Add Friend
               </button>
             )}
-
-            {/* {currentUser.user._id !== id && friend ? (
-              <button className="ask-btn" onClick={handleRemove}>
-                Remove Friend
-              </button>
-            ) : (
-              <button className="ask-btn" onClick={handleAdd}>
-                Add Friend
-              </button>
-            )} */}
           </div>
           <>
             {Switch ? (

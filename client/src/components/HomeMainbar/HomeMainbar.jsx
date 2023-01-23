@@ -22,7 +22,7 @@ const HomeMainbar = () => {
           Ask Question
         </Link>
       </div>
-      <div className="">
+      <div className="question-main-container">
         {questionsList.data === null ? (
           <h1>Loading...</h1>
         ) : (

@@ -29,6 +29,8 @@
     background-color: #0086d8;
 }
 
+
+
 .display-question-container {
     min-height: 80px;
     width: 100%;
@@ -92,12 +94,17 @@
 }
 
 
-@media screen and (max-width:768px) {
-    .main-bar {
-        width: 100%;
-        float: left;
-        margin: 25px 0px;
-        padding: 0;
+/* @media screen and (max-width:321px) and (min-width:30px) {
+    .home-container-1 {
+        position: absolute;
+        top: 50px;
+    }
+} */
+
+@media screen and (max-width:425px) and (min-width:320px) {
+    .home-container-1 {
+        position: absolute;
+        top: 95px;
     }
 }
 
@@ -123,16 +130,6 @@
         /* width: calc(100% - 20px); */
     }
 
-}
-
-@media screen and (max-width:1024px) {
-    .home-container-1 {
-        position: absolute;
-        top: 30px;
-    }
-}
-
-@media screen and (max-width:425px) {
     .post-ans-container form textarea {
         padding: 10px;
         border: solid 1px rgba(0, 0, 0, 0.3);
@@ -140,9 +137,58 @@
         width: 140px;
         resize: vertical;
     }
+
+
+}
+
+@media screen and (max-width:320px) {
+    .display-question-container {
+        min-height: 80px;
+        width: 260%;
+        display: flex;
+        align-items: center;
+        background-color: #fdf7e2;
+        border-bottom: 1px solid #edeff0;
+    }
+}
+
+@media screen and (min-width:321px) and (max-width:375px) {
+    .display-question-container {
+        min-height: 80px;
+        width: 168%;
+        display: flex;
+        align-items: center;
+        background-color: #fdf7e2;
+        border-bottom: 1px solid #edeff0;
+    }
+}
+
+@media screen and (min-width:375px) and (max-width:427px) {
+    .display-question-container {
+        min-height: 80px;
+        width: 130%;
+        display: flex;
+        align-items: center;
+        background-color: #fdf7e2;
+        border-bottom: 1px solid #edeff0;
+    }
+}
+
+@media screen and (min-width:425px) and (max-width:552px) {
+    .home-container-1 {
+        position: absolute;
+        top: 40px;
+    }
 }
 
 @media screen and (max-width:768px) {
+    .main-bar {
+        width: 100%;
+        float: left;
+        margin: 25px 0px;
+        padding: 0;
+    }
+
     .question-details-page {
         width: 100%;
         float: left;
@@ -150,3 +196,7 @@
         padding: 0px;
     }
 }
+
+/* .question-main-container{
+    width: 64vw;
+} */

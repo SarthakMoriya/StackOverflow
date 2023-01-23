@@ -12,6 +12,7 @@
     display:flex;
     justify-content:center;
     align-items: center;
+    flex-direction: column;
 }
 
 .navbar{
@@ -76,6 +77,8 @@
 
 .nav-link:hover{ background-color: #d3e4eb;}
 
+.sub-nav{display: none;}
+
 @media  screen and (max-width: 1024px){
     .navbar form{
         flex-grow:0;
@@ -93,6 +96,30 @@
 @media  screen and (max-width: 320px){
     .navbar {
         flex-wrap: wrap;
+    }
+}
+@media  screen and (max-width: 321px){
+    .navbar {
+        flex-wrap: wrap;
+    }
+
+    .sub-nav {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        justify-content: space-around;
+        font-size: 14px;
+        text-transform: uppercase;
+        margin: 0 10px 0 10px;
+        padding: 10px;
+    }
+    .sub-nav a{
+        text-decoration: none;
+        color:gray;
+    }
+    .sub-nav a:hover{
+        text-decoration: none;
+        color:black;
     }
 }
 @media  screen and (max-width: 550px){

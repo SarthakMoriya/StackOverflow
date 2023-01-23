@@ -10,16 +10,20 @@ import { likeAPost, likeABlog } from "../../actions/Posts";
 const PostMainBar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const url = "http://localhost:3000/posts";
+  const url = "http://localhost:3000/post/";
   const posts = useSelector((state) => state.postReducer);
   const blogs = useSelector((state) => state.blogReducer);
   const user = useSelector((state) => state.currentUserReducer);
-  const userId = user.user._id;
+  const userId = user?.user?._id;
   // console.log(posts);
 
   const handleShare = (postId) => {
     copy(url + postId);
     alert("link copied! " + url + postId);
+  };
+  const handleBlogShare = (postId) => {
+    copy("http://localhost:3000/blog/" + postId);
+    alert("link copied! " + "http://localhost:3000/blog/" + postId);
   };
 
   const handleCreatePost = () => {
@@ -51,45 +55,45 @@ const PostMainBar = () => {
         </button>
       </div>
       <div className="post-container-main">
-        {posts.data.map((post) => (
-          <div key={post._id} className="single-posts">
+        {posts?.data?.map((post) => (
+          <div key={post?._id} className="single-posts">
             <img
-              src={`http://localhost:5000/${post.imageUrl}`}
+              src={`https://stackoverflowbackend-y6mv.onrender.com/${post?.imageUrl}`}
               alt=""
               className="post-image"
             />
-            <div className="description">{post.description}</div>
+            <div className="description">{post?.description}</div>
             <div className="like-comment">
               <div className="">
                 <FontAwesomeIcon
                   icon={faHeart}
                   className="icons-post"
                   onClick={() => {
-                    handleLikes(post._id);
+                    handleLikes(post?._id);
                   }}
                 />
                 <div
                   className=""
                   onClick={() => {
-                    handleLikes(post._id);
+                    handleLikes(post?._id);
                   }}
                 >
-                  {post.likes.length} likes
+                  {post?.likes?.length} likes
                 </div>
               </div>
               <FontAwesomeIcon
                 icon={faShare}
-                onClick={() => handleShare(post._id)}
+                onClick={() => handleShare(post?._id)}
                 className="icons-post"
               />
             </div>
           </div>
         ))}
-        {blogs.data.map((post) => (
+        {blogs?.data?.map((post) => (
           <div key={post._id} className="single-posts">
-            <div className="title">{post.title}</div>
+            <div className="title">{post?.title}</div>
             <div className="description-blog">
-              <p>{post.description}</p>
+              <p>{post?.description}</p>
             </div>
             <div className="like-comment">
               <div className="">
@@ -97,14 +101,14 @@ const PostMainBar = () => {
                   icon={faHeart}
                   className="icons-post"
                   onClick={() => {
-                    handleBlogLikes(post._id);
+                    handleBlogLikes(post?._id);
                   }}
                 />
-                <div>{post.likes.length} likes</div>
+                <div>{post?.likes?.length} likes</div>
               </div>
               <FontAwesomeIcon
                 icon={faShare}
-                onClick={() => handleShare(post._id)}
+                onClick={() => handleBlogShare(post?._id)}
                 className="icons-post"
               />
             </div>

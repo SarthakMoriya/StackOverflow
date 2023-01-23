@@ -61,27 +61,32 @@ const Navbar = () => {
           </Link>
         ) : (
           <>
-            
-              <Link
-                to={`/users/${user.user._id}`}
-                style={{ textDecoration: "none" }}
+            <Link
+              to={`/users/${user.user._id}`}
+              style={{ textDecoration: "none" }}
+            >
+              <Avatar
+                backgroundColor="#009dff"
+                px="10px"
+                py="7px"
+                borderRadius="50%"
+                color="white"
               >
-                <Avatar
-                  backgroundColor="#009dff"
-                  px="10px"
-                  py="7px"
-                  borderRadius="50%"
-                  color="white"
-                >
-                  {user.user.name[0]}
-                </Avatar>
-              </Link>
-              <button className="nav-link nav-item" onClick={handleLogout}>
-                {user === null ? "Log in" : "Log out"}
-              </button>
-        
+                {user.user.name[0]}
+              </Avatar>
+            </Link>
+            <button className="nav-link nav-item" onClick={handleLogout}>
+              {user === null ? "Log in" : "Log out"}
+            </button>
           </>
         )}
+      </div> 
+      <div className="sub-nav">
+        <Link to='/'>Home</Link>
+        <Link to='/questions'>Questions</Link>
+        <Link to='/tags'>Tags</Link>
+        <Link to='/users'>Users</Link>
+        <Link to='/posts'>Community</Link>
       </div>
     </nav>
   );
