@@ -3,8 +3,12 @@ import mongoose from 'mongoose';
 import cors from 'cors'
 import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
+import Stripe from 'stripe'
+// const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
+const stripe = new Stripe("sk_test_51MRccSSBHS26neoyD9rRLQaZA0NA9Md2xndOfdTYE71RxTJpi93n2xYN3FopTvXlbb8gaRY0FDibPyesPXysvUid006YWvjw2D")
 
 import { createPost } from './controllers/Posts.js';
+import { handlePayment } from './routes/payment.js';
 
 import userRoutes from './routes/userRoutes.js'
 import questionRouter from './routes/QuestionRoutes.js'
@@ -30,7 +34,7 @@ app.use('/questions', questionRouter)
 app.use('/answer', answerRoutes)
 app.post('/post/create',upload.single('image'),createPost)
 app.use('/post', postRouter)
-
+app.post('/payment',cors(), handlePayment)
 app.get('/', (req, res) => {
     res.send("Hello from backend")
 })

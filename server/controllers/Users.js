@@ -78,3 +78,22 @@ export const getCurrentUser = async (req, res) => {
         res.status(200).json({ data: user })
     } catch (error) { console.log(error) }
 }
+
+export const setUserSubscription = async (req, res) => {
+    try{
+        const {userId,type}=req.body;
+        const user = await Users.findById(userId);
+        user.subscription=type;
+        
+        let noOfQuestions=1;
+        if(type==="1"){noOfQuestions=2}
+        if(type==="2"){noOfQuestions=5}
+    
+        user.noOfQuestions=noOfQuestions;
+        await Users.findByIdAndUpdate(userId, user)
+        res.status(200).json({data: user})
+    }catch(err){
+        res.status(500).json({data: null})
+        
+    }
+}

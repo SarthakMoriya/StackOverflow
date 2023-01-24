@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-const API = axios.create({ baseURL: 'https://stackoverflowbackend-y6mv.onrender.com' })
+// const API = axios.create({ baseURL: 'https://stackoverflowbackend-y6mv.onrender.com' })
+const API = axios.create({ baseURL: 'http://localhost:5000' })
 
 // API.interceptors.request.use((req)=>{
 //     if(localStorage.getItem('Profile')){
@@ -35,3 +36,5 @@ export const updateBlogLikes = (userId, postId) => API.patch('/post/likeBlog', {
 
 export const addFriend = (userId, friendId) => API.patch('/user/addFriend', { userId, friendId })
 export const removeFriend = (userId, friendId) => API.patch('/user/removeFriend', { userId, friendId })
+
+export const setSubscription = (userId, type) => API.patch('/user/setsubscription',{userId,type})

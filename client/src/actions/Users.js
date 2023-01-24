@@ -39,13 +39,11 @@ export const removeFriendOp = (userId, friendId) => async (dispatch) => {
     }
 }
 
-// export const getCurrentUserOp = (userId) => async (dispatch) => {
-//     try {
-//         const { data } = await api.getCurrentUser(userId)
-//         console.log(data)
-//         dispatch({type:'GET_LATEST_USER',payload:data})
-//         dispatch(fetchAllUsers())
-//     } catch (error) {
-//         console.log(error)
-//     }
-// }
+export const setNewSubscription=(userId,type)=>async (dispatch) => {
+    try{
+        const  {data} =await api.setSubscription(userId, type)
+        console.log(data);
+    }catch(error){
+        console.log(error);
+    }
+}

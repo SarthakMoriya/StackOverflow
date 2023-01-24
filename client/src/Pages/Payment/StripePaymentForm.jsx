@@ -1,30 +1,34 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import axios from "axios";
-
+import { setNewSubscription } from "../../actions/Users";
+import { useNavigate } from "react-router";
 
 const CARD_OPTIONS = {
-	iconStyle: "solid",
-	style: {
-		base: {
-			iconColor: "#c4f0ff",
-			color: "black",
-			fontWeight: 500,
-			fontFamily: "Roboto, Open Sans, Segoe UI, sans-serif",
-			fontSize: "16px",
-			fontSmoothing: "antialiased",
-			":-webkit-autofill": { color: "#fce883" },
-			"::placeholder": { color: "#87bbfd" }
-		},
-		invalid: {
-			iconColor: "#ffc7ee",
-			color: "#ffc7ee"
-		}
-	}
-}
+  iconStyle: "solid",
+  style: {
+    base: {
+      iconColor: "#c4f0ff",
+      color: "black",
+      fontWeight: 500,
+      fontFamily: "Roboto, Open Sans, Segoe UI, sans-serif",
+      fontSize: "16px",
+      fontSmoothing: "antialiased",
+      ":-webkit-autofill": { color: "#fce883" },
+      "::placeholder": { color: "#87bbfd" },
+    },
+    invalid: {
+      iconColor: "#ffc7ee",
+      color: "#ffc7ee",
+    },
+  },
+};
 
-
-const StripePaymentForm = () => {
+const StripePaymentForm = ({ pack }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const user = useSelector((state) => state.currentUserReducer);
   const [success, setSuccess] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
@@ -55,6 +59,9 @@ const StripePaymentForm = () => {
     } else {
       console.log("Errroe");
     }
+
+    dispatch(setNewSubscription(user.user._id, pack));
+    navigate("/auth");
   };
 
   return (
@@ -66,7 +73,7 @@ const StripePaymentForm = () => {
               <CardElement options={CARD_OPTIONS} />
             </div>
           </fieldset>
-          <button>Pay</button>
+          <button>Pay {pack}</button>
         </form>
       ) : (
         <div>

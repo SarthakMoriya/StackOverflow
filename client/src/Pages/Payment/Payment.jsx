@@ -56,7 +56,7 @@ const Payment = () => {
         <div>
           <h2>SUBSCRIBE TO $10 Per Month Pack!</h2>
           <Elements stripe={stripeTestPromise}>
-            <StripePaymentForm />
+            <StripePaymentForm pack="1"/>
           </Elements>
           <button
             type="button"
@@ -72,7 +72,7 @@ const Payment = () => {
         <div>
           <h2>SUBSCRIBE TO $100 Per Month Pack!</h2>
           <Elements stripe={stripeTestPromise}>
-            <StripePaymentForm />
+            <StripePaymentForm pack="2"/>
             <button
               type="button"
               onClick={() => {

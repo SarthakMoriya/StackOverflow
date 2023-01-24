@@ -7,7 +7,9 @@ const userSchema=mongoose.Schema({
     about:{type:String},
     tags:{type:[String]},
     joinedOn:{type:Date,default:Date.now},
-    friends:[String]
+    friends:[String],
+    noOfQuestions:{type:Number, default:1},
+    subscription:{type:String}
     
 })
 
