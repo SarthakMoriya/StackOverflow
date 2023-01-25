@@ -4,8 +4,7 @@ import cors from 'cors'
 import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
 import Stripe from 'stripe'
-// const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
-const stripe = new Stripe("sk_test_51MRccSSBHS26neoyD9rRLQaZA0NA9Md2xndOfdTYE71RxTJpi93n2xYN3FopTvXlbb8gaRY0FDibPyesPXysvUid006YWvjw2D")
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 
 import { createPost } from './controllers/Posts.js';
 import { handlePayment } from './routes/payment.js';

@@ -11,7 +11,7 @@ export const askQuestion = (questionData, navigate) => async (dispatch) => {
 
 export const fetchAllQuestions = () => async (dispatch) => {
     try {
-        console.log('Fetched');
+        // console.log('Fetched');
         const { data } = await api.getAllQuestions();
         dispatch({ type: 'FETCH_ALL_QUESTIONS', payload: data })
     } catch (err) {
@@ -23,7 +23,10 @@ export const postAnswer = (answerData) => async (dispatch) => {
     try {
         const { id, noOfAnswers, answerBody, userAnswered, userId } = answerData;
         const { data } = await api.postAnswer(id, noOfAnswers, answerBody, userAnswered, userId)
-
+        console.log("ID::",id);
+        console.log("noOfANswers::",noOfAnswers);
+        console.log("User Answered::",userAnswered);
+        console.log("UserID::",userId);
         dispatch({ type: "POST_ANSWER", payload: data })
         dispatch(fetchAllQuestions())
 

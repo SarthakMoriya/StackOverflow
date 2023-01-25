@@ -4,6 +4,7 @@ import Questions from '../models/QuestionSchema.js'
 export const askQuestion = async (req, res) => {
     try {
         const postQuestionBody = req.body;
+        console.log(postQuestionBody);
         const postedQuestion = await Questions.create(postQuestionBody)
         console.log(req.body)
         res.status(200).json({

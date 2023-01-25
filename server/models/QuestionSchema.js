@@ -15,7 +15,7 @@ const QuestonSchema = mongoose.Schema({
         userId: String,
         answeredOn: { type: Date, default: Date.now }
     }],
-    userId:String
+    userId:{type:String}
 })
 
 const Question=mongoose.model('Question',QuestonSchema)
