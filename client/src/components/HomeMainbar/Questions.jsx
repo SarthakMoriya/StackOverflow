@@ -16,11 +16,11 @@ const Questions = ({ question }) => {
       <div className="display-question-details">
         <Link to={`/questions/${question._id}`} className="question-title-link">{question.questionTitle}</Link>
         <div className="display-tags-time">
-          <div className="display-tags">
+          {/* <div className="display-tags">
             {question.questionTags.map((tag) => (
               <p key={tag}>{tag}</p>
             ))}
-          </div>
+          </div> */}
           <p className="display-time">
             Asked: {moment(question.askedOn.toLocaleString()).fromNow()} {question.userPosted}
           </p>

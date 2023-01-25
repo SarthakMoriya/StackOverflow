@@ -34,16 +34,16 @@ const QuetionDetails = () => {
       if (answer === "") {
         alert("Please enter a answer before submitting!");
       } else {
-      }
-      dispatch(
-        postAnswer({
-          id,
-          noOfAnswers: answerLength + 1,
-          answerBody: answer,
-          userAnswered: User.user.name,
-          userId:User.user._id
-        })
-      );
+        dispatch(
+          postAnswer({
+            id,
+            noOfAnswers: answerLength + 1,
+            answerBody: answer,
+            userAnswered: User.user.name,
+            userId:User.user._id
+          })
+          );
+        }
     }
   };
 
