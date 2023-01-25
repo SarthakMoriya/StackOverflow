@@ -89,6 +89,7 @@ function App() {
     dispatch(fetchAllUsers())
     dispatch(fetchAllPosts())
     dispatch(fetchAllBlogs())
+    localStorage.setItem("quesLeft",2)
   }, [dispatch])
 
   return (

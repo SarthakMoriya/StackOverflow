@@ -10,13 +10,20 @@ const AskQuestion = () => {
   const [questionTitle, setQuestionTitle] = useState("");
   const [questionBody, setQuestionBody] = useState("");
   const [questionTags, setQuestionTags] = useState([]);
+  const [quesLeft, setQuesLeft] = useState(()=>{return localStorage.getItem("quesLeft")})
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const User = useSelector((state) => state.currentUserReducer);
   console.log(User);
   const handleSubmit = (e) => {
-    e.preventDefault();
+    if (quesLeft <= 0) {
+      alert(
+        "Maximum number of questions already asked! \n Please Upgrade your plan"
+      );
+      navigate("/payment");
+      return;
+    }
     dispatch(
       askQuestion(
         {
@@ -24,13 +31,15 @@ const AskQuestion = () => {
           questionBody,
           questionTags,
           userPosted: User.user.name,
-          userId:User.user._id
+          userId: User.user._id,
         },
         navigate
       )
     );
+    //setQuesLeft(quesLeft - 1);
+    localStorage.setItem("quesLeft",parseInt(quesLeft)-1);
+    // localStorage.setItem("quesLeft", quesLeft);
   };
-
   const handleEnter = (e) => {
     if (e.key === "Enter") {
       setQuestionBody(questionBody + "\n");
@@ -40,6 +49,7 @@ const AskQuestion = () => {
     <div className="ask-question">
       <div className="ask-ques-container">
         <h1>Ask Public Question</h1>
+        <h4>{quesLeft} Questions left</h4>
         <form onSubmit={handleSubmit}>
           <div className="ask-form-container">
             <label htmlFor="ask-ques-title">
