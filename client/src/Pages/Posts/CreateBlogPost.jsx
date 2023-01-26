@@ -8,6 +8,7 @@ import { createNewBlogPost } from "../../actions/Posts";
 const CreateBlogPost = () => {
   const user = useSelector((state) => state.currentUserReducer);
   const userId = user.user._id;
+  const userName = user.user.name;
   const dispatch = useDispatch();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -20,7 +21,7 @@ const CreateBlogPost = () => {
     // formData.append("userId",user.user._id);
     // formData.append("title",title);
     // dispatch(createNewBlogPost( formData,navigate));
-    dispatch(createNewBlogPost({ title, description, userId }, navigate));
+    dispatch(createNewBlogPost({ title, description, userId ,userName}, navigate));
   };
 
   return (

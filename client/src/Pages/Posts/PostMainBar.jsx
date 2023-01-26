@@ -1,11 +1,13 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import "./PostAnswer.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart, faShare } from "@fortawesome/free-solid-svg-icons";
+import { faHeart, faShare,faTrash } from "@fortawesome/free-solid-svg-icons";
 import copy from "copy-to-clipboard";
 import { useNavigate } from "react-router-dom";
-import { likeAPost, likeABlog } from "../../actions/Posts";
+import { likeAPost, likeABlog ,deleteBlogs,deletePosts} from "../../actions/Posts";
+import Avatar from "../../components/Avatar/Avatar";
 
 const PostMainBar = () => {
   const navigate = useNavigate();
@@ -15,7 +17,6 @@ const PostMainBar = () => {
   const blogs = useSelector((state) => state.blogReducer);
   const user = useSelector((state) => state.currentUserReducer);
   const userId = user?.user?._id;
-  // console.log(posts);
 
   const handleShare = (postId) => {
     copy(url + postId);
@@ -37,6 +38,14 @@ const PostMainBar = () => {
     dispatch(likeABlog(userId, postId));
   };
 
+  const handleDeletePost = (postId) => {
+    dispatch(deletePosts(postId))
+  }
+
+  const handleDeleteBlog = (blogId) => {
+    dispatch(deleteBlogs(blogId))
+    console.log(blogId);
+  }
   return (
     <div className="post-main-bar">
       <div>
@@ -58,7 +67,7 @@ const PostMainBar = () => {
         {posts?.data?.map((post) => (
           <div key={post?._id} className="single-posts">
             <img
-              src={`https://stackoverflowbackend-y6mv.onrender.com/${post?.imageUrl}`}
+              src={`http://localhost:5000/${post?.imageUrl}`}
               alt=""
               className="post-image"
             />
@@ -86,6 +95,26 @@ const PostMainBar = () => {
                 onClick={() => handleShare(post?._id)}
                 className="icons-post"
               />
+              <Link
+                to={`/users/${post?.userId}`}
+                style={{ textDecoration: "none" }}
+              >
+                <Avatar
+                  backgroundColor="#009dff"
+                  px="10px"
+                  py="7px"
+                  borderRadius="0%"
+                  color="white"
+                >
+                  {post?.userName?.charAt(0)}
+                </Avatar>
+                <h4>{post?.username}</h4>
+              </Link>
+              {post.userId===user.user._id && (<FontAwesomeIcon
+                icon={faTrash}
+                onClick={() => handleDeletePost(post?._id)}
+                className="icons-post"
+              />)}
             </div>
           </div>
         ))}
@@ -111,6 +140,26 @@ const PostMainBar = () => {
                 onClick={() => handleBlogShare(post?._id)}
                 className="icons-post"
               />
+              <Link
+                to={`/users/${post?.userId}`}
+                style={{ textDecoration: "none" }}
+              >
+                <Avatar
+                  backgroundColor="#009dff"
+                  px="10px"
+                  py="7px"
+                  borderRadius="0%"
+                  color="white"
+                >
+                  {post?.userName?.charAt(0)}
+                </Avatar>
+                <h4>{post?.userName}</h4>
+              </Link>
+              {post.userId===user.user._id && (<FontAwesomeIcon
+                icon={faTrash}
+                onClick={() => handleDeleteBlog(post?._id)}
+                className="icons-post"
+              />)}
             </div>
           </div>
         ))}

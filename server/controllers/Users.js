@@ -80,20 +80,31 @@ export const getCurrentUser = async (req, res) => {
 }
 
 export const setUserSubscription = async (req, res) => {
-    try{
-        const {userId,type}=req.body;
+    try {
+        const { userId, type } = req.body;
         const user = await Users.findById(userId);
-        user.subscription=type;
-        
-        let noOfQuestions=1;
-        if(type==="1"){noOfQuestions=2}
-        if(type==="2"){noOfQuestions=5}
-    
-        user.noOfQuestions=noOfQuestions;
+        user.subscription = type;
+
+        let noOfQuestions = 1;
+        if (type === "1") { noOfQuestions = 2 }
+        if (type === "2") { noOfQuestions = 5 }
+
+        user.noOfQuestions = noOfQuestions;
         await Users.findByIdAndUpdate(userId, user)
-        res.status(200).json({data: user})
-    }catch(err){
-        res.status(500).json({data: null})
-        
+        res.status(200).json({ data: user })
+    } catch (err) {
+        res.status(500).json({ data: null })
+
     }
+}
+
+export const setUserQuestionLeft = async (req, res) => {
+    try {
+        const { userId, quesLeft } = req.body;
+        const user = await Users.findById(userId);
+        user.noOfQuestions = quesLeft
+
+        await Users.findByIdAndUpdate(userId, user)
+        res.status(200).json(user)
+    } catch (err) { console.log(err) }
 }

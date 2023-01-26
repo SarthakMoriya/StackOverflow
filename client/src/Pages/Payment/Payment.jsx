@@ -17,15 +17,16 @@ const Payment = () => {
         <div className="">1 Question Per Month</div>
         <div className="">Free</div>
         <div className="">
-          <button disabled>Buy</button>
+          <button disabled className="buy-btn-disabled">Buy</button>
         </div>
       </div>
       <div className="payment-box">
         <div className="">2 Question Per Month</div>
-        <div className="">100/PerMonth</div>
+        <div className="">₹100/PerMonth</div>
         <div className="">
           {!firstPack && (
             <button
+            className="buy-btn"
               onClick={() => {
                 setFirstPack(!firstPack);
                 setSecondPack(false);
@@ -38,10 +39,11 @@ const Payment = () => {
       </div>
       <div className="payment-box">
         <div className="">5 Question Per Month</div>
-        <div className="">1000/PerMonth</div>
+        <div className="">₹1000/PerMonth</div>
         <div className="">
           {!secondPack && (
             <button
+            className="buy-btn"
               onClick={() => {
                 setSecondPack(!secondPack);
                 setFirstPack(false);
@@ -54,12 +56,13 @@ const Payment = () => {
       </div>
       {firstPack && (
         <div>
-          <h2>SUBSCRIBE TO $10 Per Month Pack!</h2>
+          <h2>SUBSCRIBE TO ₹100 Per Month Pack!</h2>
           <Elements stripe={stripeTestPromise}>
             <StripePaymentForm pack="1"/>
           </Elements>
           <button
             type="button"
+            className='cancel-btn'
             onClick={() => {
               setFirstPack(!firstPack);
             }}
@@ -70,11 +73,12 @@ const Payment = () => {
       )}
       {secondPack && (
         <div>
-          <h2>SUBSCRIBE TO $100 Per Month Pack!</h2>
+          <h2>SUBSCRIBE TO ₹1000 Per Month Pack!</h2>
           <Elements stripe={stripeTestPromise}>
             <StripePaymentForm pack="2"/>
             <button
               type="button"
+              className='cancel-btn'
               onClick={() => {
                 setSecondPack(!secondPack);
               }}

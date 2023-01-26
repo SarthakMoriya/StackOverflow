@@ -28,6 +28,7 @@ const PostSchema = new mongoose.Schema(
         videoUrl: {
             type: String,
         },
+        userName: { type: String}
     },
     { timestamps: true }
 );

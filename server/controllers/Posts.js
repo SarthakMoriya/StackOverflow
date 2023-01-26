@@ -5,7 +5,7 @@ import Blogs from '../models/BlogSchema.js'
 export const getAllPosts = async (req, res) => {
     try {
         const posts = await Posts.find();
-        // console.log("Fetched",posts);
+
         res.status(200).json(posts)
     } catch (err) {
         console.log(err);
@@ -15,7 +15,6 @@ export const getAllPosts = async (req, res) => {
 export const getAllBlogs = async (req, res) => {
     try {
         const blogs = await Blogs.find();
-        console.log("Fetched",blogs);
         res.status(200).json(blogs)
     } catch (err) {
         console.log(err);
@@ -26,13 +25,14 @@ export const createPost = async (req, res) => {
     try {
         // console.log(req.body.image)
         //  console.log(req.file);
-        //  console.log(req.body);
+        console.log(req.body);
         const postBody = req.body;
         // console.log(postBody);
         const createdPost = await Posts.create({
             description: postBody.description,
             userId: postBody.userId,
             imageUrl: req.file.path,
+            userName: postBody.userName,
         })
         res.status(201).json({ data: createdPost })
     } catch (error) {
@@ -86,10 +86,31 @@ export const createBlogPost = async (req, res) => {
         const createdBlog = await Blogs.create({
             description: postBody.description,
             userId: postBody.userId,
-            title: postBody.title
+            title: postBody.title,
+            userName: postBody.userName
         })
         res.status(201).json({ data: createdBlog })
     } catch (error) {
         res.status(500).json({ error: error })
+    }
+}
+
+export const deletePost = async (req, res) => {
+    const { id: _id } = req.params;
+    try {
+        await Posts.findByIdAndRemove(_id)
+        res.status(200).json({ message: "Successfully Destroyed!" })
+    } catch (error) {
+        res.status(500).json("ERRURRR!")
+    }
+}
+
+export const deleteBlog = async (req, res) => {
+    const { id: _id } = req.params;
+    try {
+        await Blogs.findByIdAndRemove(_id)
+        res.status(200).json({ message: "Successfully Destroyed!" })
+    } catch (error) {
+        res.status(500).json("ERRURRR!")
     }
 }

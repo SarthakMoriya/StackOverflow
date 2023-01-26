@@ -4,3 +4,46 @@
     justify-content: space-around;
     flex-wrap: wrap;
 }
+
+.ask-btn {
+    padding: 10px 15px;
+    border-radius: 4px;
+    background-color: #009bff;
+    color: white;
+    border: none;
+    text-decoration: none;
+    transition: .3s;
+    margin: 10px 0 10px 0;
+}
+.cancel-btn {
+    padding: 10px 15px;
+    border-radius: 4px;
+    background-color: #f63b12;
+    color: white;
+    border: none;
+    text-decoration: none;
+    transition: .3s;
+    margin: 10px 0 10px 0;
+}
+.buy-btn {
+    padding: 10px 15px;
+    border-radius: 4px;
+    background-color: #f63b12;
+    color: white;
+    border: none;
+    text-decoration: none;
+    transition: .3s;
+    cursor: pointer;
+    margin: 10px 0 10px 0;
+}
+.buy-btn-disabled {
+    padding: 10px 15px;
+    border-radius: 4px;
+    background-color: #9c9290;
+    color: white;
+    border: none;
+    text-decoration: none;
+    transition: .3s;
+    cursor:not-allowed;
+    margin: 10px 0 10px 0;
+}

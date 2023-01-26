@@ -37,4 +37,8 @@ export const updateBlogLikes = (userId, postId) => API.patch('/post/likeBlog', {
 export const addFriend = (userId, friendId) => API.patch('/user/addFriend', { userId, friendId })
 export const removeFriend = (userId, friendId) => API.patch('/user/removeFriend', { userId, friendId })
 
-export const setSubscription = (userId, type) => API.patch('/user/setsubscription',{userId,type})
+export const setSubscription = (userId, type) => API.patch('/user/setsubscription', { userId, type })
+export const updateQuestionsLeft = (userId, quesLeft) => API.patch('/user/updatequestionsleft', { userId, quesLeft })
+
+export const deletePost = (postId) => API.delete(`/post/deletepost/${postId}`)
+export const deleteBlog = (blogId) => API.delete(`/post/deleteblog/${blogId}`)

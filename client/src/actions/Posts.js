@@ -56,3 +56,21 @@ export const createNewBlogPost = (postData, navigate) => async (dispatch) => {
         console.log(err);
     }
 }
+export const deleteBlogs = (blogId) => async (dispatch) => {
+    try {
+        const { data } = await api.deleteBlog(blogId)
+        dispatch(fetchAllPosts())
+        dispatch(fetchAllBlogs())
+    } catch (err) {
+        console.log(err);
+    }
+}
+export const deletePosts = (postId) => async (dispatch) => {
+    try {
+        const { data } = await api.deletePost(postId);
+        dispatch(fetchAllPosts())
+        dispatch(fetchAllBlogs())
+    } catch (err) {
+        console.log(err);
+    }
+}

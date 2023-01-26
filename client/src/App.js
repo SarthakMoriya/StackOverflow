@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
@@ -16,7 +16,7 @@ import AskQuestion from './Pages/AskQuestion/AskQuestion';
 import DisplayQuestion from './Pages/Questions/DisplayQuestion';
 import { fetchAllQuestions } from './actions/Question';
 import { fetchAllUsers } from './actions/Users';
-import {fetchAllPosts,fetchAllBlogs} from './actions/Posts'
+import { fetchAllPosts, fetchAllBlogs } from './actions/Posts'
 import CreatePost from './Pages/Posts/CreatePost';
 import CreatePostOption from './Pages/Posts/CreatePostOption';
 import CreateBlogPost from './Pages/Posts/CreateBlogPost';
@@ -29,7 +29,7 @@ class ErrorBoundary extends React.Component {
     super(props);
     this.state = { error: null, errorInfo: null };
   }
-  
+
   componentDidCatch(error, errorInfo) {
     // Catch errors in any components below and re-render with error message
     this.setState({
@@ -38,7 +38,7 @@ class ErrorBoundary extends React.Component {
     })
     // You can also log error messages to an error reporting service here
   }
-  
+
   render() {
     if (this.state.errorInfo) {
       // Error path
@@ -55,7 +55,7 @@ class ErrorBoundary extends React.Component {
     }
     // Normally, just render children
     return this.props.children;
-  }  
+  }
 }
 
 class BuggyCounter extends React.Component {
@@ -64,13 +64,13 @@ class BuggyCounter extends React.Component {
     this.state = { counter: 0 };
     this.handleClick = this.handleClick.bind(this);
   }
-  
+
   handleClick() {
-    this.setState(({counter}) => ({
+    this.setState(({ counter }) => ({
       counter: counter + 1
     }));
   }
-  
+
   render() {
     if (this.state.counter === 5) {
       // Simulate a JS error
@@ -82,14 +82,19 @@ class BuggyCounter extends React.Component {
 
 
 function App() {
+  const User = useSelector((state) => state.currentUserReducer)
   const dispatch = useDispatch()
   useEffect(() => {
-    console.log("In App");
     dispatch(fetchAllQuestions())
     dispatch(fetchAllUsers())
     dispatch(fetchAllPosts())
     dispatch(fetchAllBlogs())
-    localStorage.setItem("quesLeft",2)
+    // if(User)
+    // {
+    //   localStorage.setItem("quesLeft", User?.user?.noOfQuestions)
+    // }
+
+    // console.log(User.user)
   }, [dispatch])
 
   return (
@@ -97,24 +102,24 @@ function App() {
       {/* <Payment/> */}
       <Navbar />
       <ErrorBoundary>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/tags" element={<Tags />} />
-        <Route path="/users" element={<Users />} />
-        <Route path="/posts" element={<Posts />} />
-        <Route path="/payment" element={<PaymentMain />} />
-        <Route path="/posts/createPost" element={<CreatePost />} />
-        <Route path="/posts/createBlogPost" element={<CreateBlogPost />} />
-        <Route path="/posts/createPostForCommunity" element={<CreatePostOption />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/auth" element={<Auth />} />
-        <Route path="/questions" element={<Question />} />
-        <Route path="/askquestion" element={<AskQuestion />} />
-        <Route path="/questions/:id" element={<DisplayQuestion />} />
-        <Route path="/post/:id" element={<DisplayPosts />} />
-        <Route path="/blog/:id" element={<DisplayBlogs />} />
-        <Route path='/users/:id' element={<UserProfile />} />
-      </Routes>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/tags" element={<Tags />} />
+          <Route path="/users" element={<Users />} />
+          <Route path="/posts" element={<Posts />} />
+          <Route path="/payment" element={<PaymentMain />} />
+          <Route path="/posts/createPost" element={<CreatePost />} />
+          <Route path="/posts/createBlogPost" element={<CreateBlogPost />} />
+          <Route path="/posts/createPostForCommunity" element={<CreatePostOption />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/auth" element={<Auth />} />
+          <Route path="/questions" element={<Question />} />
+          <Route path="/askquestion" element={<AskQuestion />} />
+          <Route path="/questions/:id" element={<DisplayQuestion />} />
+          <Route path="/post/:id" element={<DisplayPosts />} />
+          <Route path="/blog/:id" element={<DisplayBlogs />} />
+          <Route path='/users/:id' element={<UserProfile />} />
+        </Routes>
       </ErrorBoundary>
     </BrowserRouter>
   );

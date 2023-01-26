@@ -1,8 +1,9 @@
-import React, { useState ,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { askQuestion } from "../../actions/Question";
+import { setQuestionsLeft } from "../../actions/Users";
 
 import "./AskQuestion.css";
 
@@ -14,7 +15,9 @@ const AskQuestion = () => {
   const [questionTitle, setQuestionTitle] = useState("");
   const [questionBody, setQuestionBody] = useState("");
   const [questionTags, setQuestionTags] = useState([]);
-  const [quesLeft, setQuesLeft] = useState(()=> { return localStorage.getItem("quesLeft") });
+  const [quesLeft, setQuesLeft] = useState(() => {
+    return localStorage.getItem("quesLeft");
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -37,9 +40,8 @@ const AskQuestion = () => {
         navigate
       )
     );
-    //setQuesLeft(quesLeft - 1);
-    localStorage.setItem("quesLeft",parseInt(quesLeft)-1);
-    // localStorage.setItem("quesLeft", quesLeft);
+    dispatch(setQuestionsLeft(User?.user?._id, quesLeft-1));
+    localStorage.setItem("quesLeft", parseInt(quesLeft) - 1);
   };
 
   const handleEnter = (e) => {
@@ -51,12 +53,11 @@ const AskQuestion = () => {
   // useEffect(() => {
   //   localStorage.setItem("quesLeft", quesLeft);
   // }, [])
-  
+
   return (
     <div className="ask-question">
       <div className="ask-ques-container">
         <h1>Ask Public Question</h1>
-        <h4>{User?.user?.noOfQuestions} Questions Left</h4>
         <h4>{quesLeft} Questions Left</h4>
         <form onSubmit={handleSubmit}>
           <div className="ask-form-container">

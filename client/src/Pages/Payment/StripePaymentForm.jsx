@@ -73,7 +73,7 @@ const StripePaymentForm = ({ pack }) => {
               <CardElement options={CARD_OPTIONS} />
             </div>
           </fieldset>
-          <button>Pay {pack}</button>
+          <button className="ask-btn">Pay {pack}</button>
         </form>
       ) : (
         <div>

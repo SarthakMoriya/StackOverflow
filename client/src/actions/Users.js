@@ -39,11 +39,20 @@ export const removeFriendOp = (userId, friendId) => async (dispatch) => {
     }
 }
 
-export const setNewSubscription=(userId,type)=>async (dispatch) => {
-    try{
-        const  {data} =await api.setSubscription(userId, type)
+export const setNewSubscription = (userId, type) => async (dispatch) => {
+    try {
+        const { data } = await api.setSubscription(userId, type)
         console.log(data);
-    }catch(error){
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const setQuestionsLeft = (userId, quesLeft) => async (dispatch) => {
+    try {
+        const { data } = await api.updateQuestionsLeft(userId, quesLeft);
+        console.log(data)
+    } catch (error) {
         console.log(error);
     }
 }

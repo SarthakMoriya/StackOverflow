@@ -18,6 +18,7 @@ const CreatePostForm = () => {
     formData.append("description",description);
     formData.append("userId",user.user._id);
     formData.append("image",image);
+    formData.append("userName",user?.user?.name);
     // dispatch(createNewPost({ description, userId: user.user._id,image:{}}, navigate));
     dispatch(createNewPost( formData,navigate));
   };

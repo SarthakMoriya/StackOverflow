@@ -43,8 +43,8 @@ const Navbar = () => {
         <Link to="/contact" className="nav-item nav-btn">
           Contact
         </Link>
-        <Link to="/teams" className="nav-item nav-btn">
-          For Teams
+        <Link to="/payment" className="nav-item nav-btn">
+          Payment
         </Link>
         <form>
           <input type="text" className="" placeholder="Search..." />
