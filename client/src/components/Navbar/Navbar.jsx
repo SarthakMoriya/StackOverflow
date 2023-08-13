@@ -5,16 +5,25 @@ import { useSelector, useDispatch } from "react-redux";
 import logo from "../../assets/logo.png";
 import searchIcon from "../../assets/magnifying-glass-solid.svg";
 import { setCurrentUser } from "../../actions/currentUser";
-
+import { useAuth0 } from "@auth0/auth0-react";
+import { signup, login } from "../../actions/auth";
 import Avatar from "../Avatar/Avatar";
 
 import "./Navbar.css";
 
 const Navbar = () => {
+  const { user, isAuthenticated, isLoading } = useAuth0();
+  const { loginWithRedirect } = useAuth0();
+  const { logout } = useAuth0();
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.currentUserReducer);
+  const user1 = useSelector((state) => state.currentUserReducer);
   const navigate = useNavigate();
 
+  const handleSaveUser=()=>{
+    if(isAuthenticated){
+      dispatch()
+    }
+  }
   const handleLogout = () => {
     dispatch({ type: "LOGOUT" });
     navigate("/");
@@ -22,6 +31,8 @@ const Navbar = () => {
   };
 
   useEffect(() => {
+    console.log(isAuthenticated)
+
     const token = user?.token;
     if (token) {
       const decodedToken = decode(token);
@@ -55,14 +66,14 @@ const Navbar = () => {
             className="search-icon"
           />
         </form>
-        {user === null ? (
+        {user1 === null ? (
           <Link to="/auth" className="nav-item nav-link">
             Log in
           </Link>
         ) : (
           <>
             <Link
-              to={`/users/${user.user._id}`}
+              to={`/users/${user1.user._id}`}
               style={{ textDecoration: "none" }}
             >
               <Avatar
@@ -72,21 +83,32 @@ const Navbar = () => {
                 borderRadius="50%"
                 color="white"
               >
-                {user.user.name[0]}
+                {user1.user.name[0]}
               </Avatar>
             </Link>
             <button className="nav-link nav-item" onClick={handleLogout}>
-              {user === null ? "Log in" : "Log out"}
+              {user1 === null ? "Log in" : "Log out"}
             </button>
           </>
         )}
-      </div> 
+        {/* {isAuthenticated ? (
+          <button
+            onClick={() =>
+              logout({ logoutParams: { returnTo: window.location.origin } })
+            }
+          >
+            Log Out
+          </button>
+        ) : (
+          <button onClick={() => loginWithRedirect()}>Log In</button>
+        )} */}
+      </div>
       <div className="sub-nav">
-        <Link to='/'>Home</Link>
-        <Link to='/questions'>Questions</Link>
-        <Link to='/tags'>Tags</Link>
-        <Link to='/users'>Users</Link>
-        <Link to='/posts'>Community</Link>
+        <Link to="/">Home</Link>
+        <Link to="/questions">Questions</Link>
+        <Link to="/tags">Tags</Link>
+        <Link to="/users">Users</Link>
+        <Link to="/posts">Community</Link>
       </div>
     </nav>
   );

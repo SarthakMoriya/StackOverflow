@@ -34,7 +34,8 @@ const DisplayPosts = () => {
           .map((post) => (
             <div key={post._id}>
               <img
-                src={`http://localhost:5000/${post?.imageUrl}`}
+                // src={`http://localhost:5000/${post?.imageUrl}`}
+                src={`https://stackoverflowbackend-y6mv.onrender.com/${post?.imageUrl}`}
                 alt=""
                 className="post-image"
               />

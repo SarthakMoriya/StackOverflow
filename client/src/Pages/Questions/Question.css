@@ -145,3 +145,26 @@
     line-height: 22px;
     text-decoration: none;
 }
+
+@media screen and (max-width: 425px) {
+    form {
+        width: 180px;
+    }
+
+    .display-ans {
+        width: 320px;
+    }
+}
+
+@media screen and (min-width:425px) and (max-width: 500px) {
+    .display-ans {
+        width: 210px;
+    }
+
+}
+@media screen and (min-width:500px) and (max-width: 768px) {
+    .display-ans {
+        width: 400px;
+    }
+
+}

@@ -155,7 +155,7 @@
 @media screen and (min-width:321px) and (max-width:375px) {
     .display-question-container {
         min-height: 80px;
-        width: 168%;
+        width: 260%;
         display: flex;
         align-items: center;
         background-color: #fdf7e2;
@@ -166,7 +166,7 @@
 @media screen and (min-width:375px) and (max-width:427px) {
     .display-question-container {
         min-height: 80px;
-        width: 130%;
+        width: 200%;
         display: flex;
         align-items: center;
         background-color: #fdf7e2;

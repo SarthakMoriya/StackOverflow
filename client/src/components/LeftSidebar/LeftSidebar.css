@@ -44,17 +44,19 @@
     border-right: solid 3px #ef8236;
 }
 
-@media screen and (max-width:321px) {
+@media screen and (max-width:425px) {
     .left-sidebar {
         /* width: 105px; */
         display: none;
     }
 
-    
+
 }
-@media screen and (max-width:425px) and (min-width:322px){
+
+/* @media screen and (max-width:425px) and (min-width:322px){
     .left-sidebar {
         width: 120px;
-        /* display: none; */
-    }
-}
+         display: none; 
+        }
+    } 
+    */

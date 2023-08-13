@@ -4,7 +4,7 @@ import "./UserProfile.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBirthdayCake, faPen } from "@fortawesome/free-solid-svg-icons";
 
-import { useNavigate, useParams } from "react-router";
+import { useParams } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import moment from "moment";
 
@@ -17,10 +17,12 @@ import { useEffect } from "react";
 import { addFriendOp, removeFriendOp } from "../../actions/Users";
 
 const UserProfile = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [friend, setFriend] = useState(false);
-  const User = useSelector((state) => state.currentUserReducer);
+  // const User = useSelector((state) => state.currentUserReducer);
+  const User = JSON.parse(localStorage.getItem("Profile"));
+
+  // console.log(User,xyz);
   const { id } = useParams();
   const users = useSelector((state) => state.userReducer);
   const currentProfile = users.filter((user) => user?._id === id)[0];
@@ -28,33 +30,35 @@ const UserProfile = () => {
   // let latestUser=useSelector((state) => state.latestUserReducer);
   const [Switch, setSwitch] = useState(false);
 
-  const handleSwitch = () => {
-    setSwitch(!Switch);
+  const fetchFriends = () => {
+    //id is id of person whos profile we visited
+    let userFriends = User?.user?.friends;
+    // console.log(User?.user?.friends);
+    const isFriend = userFriends?.findIndex((user) => user === id);
+    if (isFriend !== -1) {
+      console.log(isFriend);
+      setFriend(true);
+    }
   };
-
   useEffect(() => {
-    const fetchFriends = () => {
-      let userFriends = User?.user?.friends;
-      const isFriend = userFriends?.findIndex((user) => user === id);
-      if (isFriend !== -1) {
-        setFriend(true);
-      }
-    };
     fetchFriends();
-  }, [dispatch]);
+    // console.log("Profile opened...")
+  }, []);
 
   const handleRemove = () => {
     dispatch(removeFriendOp(User?.user?._id, id));
-    alert("New Friends will be seen on LogIn ");
-    navigate("/auth");
+    fetchFriends();
+    // alert("New Friends will be seen on LogIn ");
+    // navigate("/auth");
 
-    // setFriend(false);
+    setFriend(false);
   };
   const handleAdd = () => {
     dispatch(addFriendOp(User?.user?._id, id));
-    alert("New Friends will be seen on LogIn ");
-    navigate("/auth");
-    // setFriend(true);
+    fetchFriends();
+    // alert("New Friends will be seen on LogIn ");
+    // navigate("/auth");
+    setFriend(true);
   };
 
   return (
@@ -81,10 +85,14 @@ const UserProfile = () => {
                 </p>
               </div>
             </div>
+            {/* If we are on current loggedIn user's Profile page and want to edit it */}
             {currentUser?.user?._id === id ? (
               <button
                 type="button"
-                onClick={handleSwitch}
+                //switch handles form to edit bio of current loggedIn user
+                onClick={() => {
+                  setSwitch(!Switch);
+                }}
                 className={!Switch ? "edit-profile-btn" : "edit-profile-btn"}
               >
                 <FontAwesomeIcon icon={faPen} />
@@ -101,6 +109,7 @@ const UserProfile = () => {
             )}
           </div>
           <>
+            {/* Form to edit bio */}
             {Switch ? (
               <EditProfileForm
                 currentUser={currentUser}

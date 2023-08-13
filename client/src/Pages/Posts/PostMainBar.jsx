@@ -12,7 +12,8 @@ import Avatar from "../../components/Avatar/Avatar";
 const PostMainBar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const url = "http://localhost:3000/post/";
+  const url = "https://stackoverflowbysarthak.netlify.app/post/";
+  // const url = "http://localhost:/post/";
   const posts = useSelector((state) => state.postReducer);
   const blogs = useSelector((state) => state.blogReducer);
   const user = useSelector((state) => state.currentUserReducer);
@@ -23,8 +24,8 @@ const PostMainBar = () => {
     alert("link copied! " + url + postId);
   };
   const handleBlogShare = (postId) => {
-    copy("http://localhost:3000/blog/" + postId);
-    alert("link copied! " + "http://localhost:3000/blog/" + postId);
+    copy("https://stackoverflowbysarthak.netlify.app/blog/" + postId);
+    alert("link copied! " + "https://stackoverflowbysarthak.netlify.app/blog/" + postId);
   };
 
   const handleCreatePost = () => {
@@ -67,6 +68,7 @@ const PostMainBar = () => {
         {posts?.data?.map((post) => (
           <div key={post?._id} className="single-posts">
             <img
+              // src={`https://stackoverflowbackend-y6mv.onrender.com/${post?.imageUrl}`}
               src={`http://localhost:5000/${post?.imageUrl}`}
               alt=""
               className="post-image"

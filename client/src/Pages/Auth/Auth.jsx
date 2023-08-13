@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
 import icon from "../../assets/icon.png";
 import "./Auth.css";
@@ -35,11 +36,11 @@ const Auth = () => {
       if (!name) {
         alert("Please enter Username!");
       }
-      dispatch(signup({ name, email, password },navigate));
+      dispatch(signup({ name, email, password }, navigate));
     } else {
       // LOGIN PAGE
 
-      dispatch(login({ email, password },navigate));
+      dispatch(login({ email, password }, navigate));
     }
   };
   return (

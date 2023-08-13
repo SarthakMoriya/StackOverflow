@@ -60,7 +60,7 @@ const StripePaymentForm = ({ pack }) => {
       console.log("Errroe");
     }
 
-    dispatch(setNewSubscription(user.user._id, pack));
+    dispatch(setNewSubscription(user?.user?._id, pack));
     navigate("/auth");
   };
 
