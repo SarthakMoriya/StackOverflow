@@ -15,6 +15,7 @@ import EditProfileForm from "./EditProfileForm";
 import { useEffect } from "react";
 
 import { addFriendOp, removeFriendOp } from "../../actions/Users";
+import { Link } from "react-router-dom";
 
 const UserProfile = () => {
   const dispatch = useDispatch();
@@ -87,23 +88,30 @@ const UserProfile = () => {
             </div>
             {/* If we are on current loggedIn user's Profile page and want to edit it */}
             {currentUser?.user?._id === id ? (
-              <button
-                type="button"
-                //switch handles form to edit bio of current loggedIn user
-                onClick={() => {
-                  setSwitch(!Switch);
-                }}
-                className={!Switch ? "edit-profile-btn" : "edit-profile-btn"}
-              >
-                <FontAwesomeIcon icon={faPen} />
-                {!Switch ? "Edit Profile" : "Cancel"}
-              </button>
+              <div className="flex flex-col items-center justify-between">
+                <button
+                  type="button"
+                  //switch handles form to edit bio of current loggedIn user
+                  onClick={() => {
+                    setSwitch(!Switch);
+                  }}
+                  className={
+                    !Switch ? "edit-profile-btn p-4" : "edit-profile-btn p-4"
+                  }
+                >
+                  <FontAwesomeIcon icon={faPen} />
+                  {!Switch ? "Edit Profile" : "Cancel"}
+                </button>
+                <button className=" p-4 edit-profile-btn mt-2">
+                  <Link to={`/editaccount/${id}`}>Edit account</Link>
+                </button>
+              </div>
             ) : friend ? (
               <button className="ask-btn" onClick={handleRemove}>
                 Remove Friend
               </button>
             ) : (
-              <button className="ask-btn" onClick={handleAdd}>
+              <button className="ask-btn " onClick={handleAdd}>
                 Add Friend
               </button>
             )}

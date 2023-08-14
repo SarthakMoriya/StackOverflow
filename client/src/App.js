@@ -23,7 +23,7 @@ import CreateBlogPost from './Pages/Posts/CreateBlogPost';
 import DisplayPosts from './Pages/Posts/DispalyPostBlogs/DisplayPosts';
 import DisplayBlogs from './Pages/Posts/DispalyPostBlogs/DisplayBlogs';
 import PaymentMain from './Pages/Payment/PaymentMain';
-import GoogleAuth from './Pages/Auth/GoogleAuth';
+import EditAccount from './Pages/Auth/EditAccount';
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -114,13 +114,13 @@ function App() {
           <Route path="/posts/createPostForCommunity" element={<CreatePostOption />} />
           <Route path="/about" element={<About />} />
           <Route path="/auth" element={<Auth />} />
-          {/* <Route path="/auth" element={<GoogleAuth/>} /> */}
           <Route path="/questions" element={<Question />} />
           <Route path="/askquestion" element={<AskQuestion />} />
           <Route path="/questions/:id" element={<DisplayQuestion />} />
           <Route path="/post/:id" element={<DisplayPosts />} />
           <Route path="/blog/:id" element={<DisplayBlogs />} />
           <Route path='/users/:id' element={<UserProfile />} />
+          <Route path='/editaccount/:id' element={<EditAccount />} />
         </Routes>
       </ErrorBoundary>
     </BrowserRouter>
