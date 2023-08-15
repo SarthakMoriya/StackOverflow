@@ -1,5 +1,7 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
+import nodemailer from "nodemailer";
+import otpGenerator from "otp-generator";
 
 import Users from "../models/authSchema.js";
 
@@ -94,7 +96,10 @@ export const changePassword = async (req, res) => {
     );
 
     //check if old and new password were same?
-    if(curr_password===new_password) throw new Error ("old and new password are same please try a new password...")
+    if (curr_password === new_password)
+      throw new Error(
+        "old and new password are same please try a new password..."
+      );
     //Incorrect Password
     if (!correctpassword) throw new Error("Incorrect Password...");
 
@@ -109,5 +114,72 @@ export const changePassword = async (req, res) => {
     res
       .status(500)
       .json({ message: "Something went wrong changing your password" });
+  }
+};
+
+//Forgot Password
+export const forgotPassword = async (req, res) => {
+  try {
+    const { useremail } = req.body;
+    //check if user exists or not
+    const user = await Users.findOne({ email: useremail });
+    if (!user) throw new Error("No user exists with given email address!");
+
+    // Create a transport object using the default SMTP transport
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: "sarthak8544@gmail.com",
+        pass: "eedcgrvfaibawlql",
+      },
+    });
+
+    // Generate OTP
+    const otpCode = otpGenerator.generate(6, {
+      digits: true,
+      alphabets: false,
+      upperCase: false,
+    });
+
+    const mailOptions = {
+      from: "sarthak8544@gmail.com",
+      to: useremail, // User's email address
+      subject: "OTP Verification",
+      text: `Your OTP code is: ${otpCode}`,
+    };
+
+    // Send the email
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.log(error);
+        return res.status(500).json({ message: "Error sending email" });
+      } else {
+        console.log(info);
+        return res.status(200).json({ message: "Email sent:", otp: otpCode });
+      }
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Error!", error: error.message });
+  }
+};
+
+//New/Recover Password
+export const newPassword = async (req, res) => {
+  try {
+    const { email, new_password } = req.body;
+    console.log(email, new_password);
+    //check if user exists or not
+    const user = await Users.findOne({ email });
+    if (!user) throw new Error("No user exists with given email address!");
+
+    //Assuming otp was correct as per checked in frontend
+    const hashedPassword = await bcrypt.hash(new_password, 12);
+    user.password = hashedPassword;
+    await user.save();
+    res.status(200).json({ message: "Password Changed successfully" });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Something went wrong", error: error.message });
   }
 };

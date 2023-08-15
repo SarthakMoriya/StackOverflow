@@ -2,15 +2,18 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import icon from "../../assets/icon.png";
 import "./Auth.css";
 import AboutAuth from "./AboutAuth";
 
-import { signup, login } from "../../actions/auth";
+import { signup, login, recoverPassword } from "../../actions/auth";
 
 const Auth = () => {
   //isSignupPage?? initially false ie we are not on signup
   const [isSignup, setIsSignup] = useState(false);
+  const [forgotPassword, setForgotPassword] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,28 +25,46 @@ const Auth = () => {
     setIsSignup(!isSignup);
   };
 
+  const notify = (message) => toast.success(`${message}`);
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (!email && !password) {
-      alert("Please enter email and password!");
+      notify("Please enter email and password!");
     }
 
     if (isSignup) {
       // SIGNUP PAGE
 
       if (!name) {
-        alert("Please enter Username!");
+        notify("Please enter Username!");
       }
       dispatch(signup({ name, email, password }, navigate));
     } else {
       // LOGIN PAGE
-
-      dispatch(login({ email, password }, navigate));
+      if (forgotPassword) {
+        notify("OTP sent successfully");
+        dispatch(recoverPassword({ useremail: email }, navigate));
+      } else {
+        dispatch(login({ email, password }, navigate));
+      }
     }
   };
   return (
     <section className="auth-section">
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
       {isSignup && <AboutAuth />}
       <div className="auth-container-2">
         {!isSignup && (
@@ -65,39 +86,66 @@ const Auth = () => {
               />
             </label>
           )}
-          <label htmlFor="email">
-            <h4>Email:</h4>
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-            placeholder="Enter Email"
-            className="input-width"
-          />
-          <label htmlFor="password">
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <h4>Password:</h4>
-              {!isSignup && (
-                <h4 style={{ color: "#007ac6", fontSize: "13px" }}>
-                  Forgot Password?
-                </h4>
-              )}
-            </div>
-          </label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-            placeholder="Enter Password"
-            className="input-width"
-          />
+          {!forgotPassword && (
+            <>
+              <label htmlFor="email">
+                <h4>Email:</h4>
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+                placeholder="Enter Email"
+                className="input-width"
+              />
+              <label htmlFor="">
+                <div
+                  style={{ display: "flex", justifyContent: "space-between" }}
+                >
+                  <h4>Password:</h4>
+                </div>
+              </label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+                placeholder="Enter Password"
+                className="input-width"
+              />
+            </>
+          )}
+          {!isSignup && (
+            <h4
+              className="cursor-pointer"
+              style={{ color: "#007ac6", fontSize: "13px" }}
+              onClick={() => {
+                setForgotPassword(!forgotPassword);
+              }}
+            >
+              Forgot Password?
+            </h4>
+          )}
+          {forgotPassword && (
+            <>
+              <label htmlFor="femail">Enter Email </label>
+              <input
+                type="email"
+                id="femail"
+                name="femail"
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+                placeholder="Enter email"
+                className="input-width"
+              />
+            </>
+          )}
           {isSignup && (
             <p style={{ color: "#666767", fontSize: "13px" }}>
               password must contain 8 characters ,<br /> including atleast 1

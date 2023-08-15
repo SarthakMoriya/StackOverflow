@@ -24,6 +24,7 @@ import DisplayPosts from './Pages/Posts/DispalyPostBlogs/DisplayPosts';
 import DisplayBlogs from './Pages/Posts/DispalyPostBlogs/DisplayBlogs';
 import PaymentMain from './Pages/Payment/PaymentMain';
 import EditAccount from './Pages/Auth/EditAccount';
+import RecoverPassword from './Pages/Auth/RecoverPassword';
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -120,7 +121,7 @@ function App() {
           <Route path="/post/:id" element={<DisplayPosts />} />
           <Route path="/blog/:id" element={<DisplayBlogs />} />
           <Route path='/users/:id' element={<UserProfile />} />
-          <Route path='/editaccount/:id' element={<EditAccount />} />
+          <Route path='/recovery/:id' element={<RecoverPassword />} />
         </Routes>
       </ErrorBoundary>
     </BrowserRouter>
