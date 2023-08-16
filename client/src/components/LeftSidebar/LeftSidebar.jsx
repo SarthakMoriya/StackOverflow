@@ -9,24 +9,24 @@ const LeftSidebar = () => {
     <div className="left-sidebar">
       <nav className="side-nav">
         <NavLink to="/" className="side-nav-links" >
-          <p>Home</p>
+          <p className="px-3 py-2">Home</p>
         </NavLink>
-        <div className="side-nav-div">
-          <div>
+        <div className="side-nav-div px-3">
+          <div className="pl-3">
             <p>PUBLIC</p>
           </div>
-          <NavLink to="/questions" className="side-nav-links">
+          <NavLink to="/questions" className="side-nav-links mt-2 border-t border-t-black">
             <img src={Globe} alt="Globe" />
-            <p style={{ paddingLeft: "10px" }}>Questions</p>
+            <p className="px-3 py-2 ">Questions</p>
           </NavLink>
           <NavLink to="/tags" className="side-nav-links" style={{ paddingLeft: "40px" }}>
-            <p>Tags</p>
+            <p className="px-3 py-2" >Tags</p>
             </NavLink>
           <NavLink to="/users" className="side-nav-links"  style={{ paddingLeft: "40px" }}>
-            <p>Users</p>
+            <p className="px-3 py-2">Users</p>
             </NavLink>
           <NavLink to="/posts" className="side-nav-links"  style={{ paddingLeft: "40px" }}>
-            <p>Community</p>
+            <p className="px-3 py-2">Community</p>
             </NavLink>
         </div>
       </nav>

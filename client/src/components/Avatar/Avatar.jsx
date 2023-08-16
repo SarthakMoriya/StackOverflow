@@ -3,14 +3,12 @@ import React from 'react'
 const Avatar = ({children,backgroundColor,borderRadius,color,px,py}) => {
     const styles={
         backgroundColor: backgroundColor ,
-        borderRadius: borderRadius,
         color:color || 'white',
-        padding:`${px} ${py}`,
         textDecoration:'none',
-        textALign:'center'
+        textAlign:'center'
     }
   return (
-    <div style={styles}>{children}</div>
+    <div className='rounded-sm px-2 py-1 mr-3' style={styles}>{children}</div>
   )
 }
 

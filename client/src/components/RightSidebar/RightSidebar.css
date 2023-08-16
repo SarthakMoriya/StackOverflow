@@ -14,9 +14,9 @@
 .widget h4{
     background-color: #fbf3d5;
     margin: 0%;
-    padding: 15px;
+    /* padding: 15px; */
     border: solid 1px #f1e5bc;
-    font-size: 13px;
+    /* font-size: 13px; */
 }
 
 .right-sidebar-div-1{

@@ -8,7 +8,7 @@ import blacklogo from "../../assets/blacklogo.svg";
 const Widget = () => {
   return (
     <div className="widget">
-      <h4>The Overflow Blog</h4>
+      <h4 className="text-xl px-4 py-4">The Overflow Blog</h4>
       <div className="right-sidebar-div-1">
         <div className="right-sidebar-div-2">
           <img src={pen} alt="pen" width="18" />
@@ -24,7 +24,7 @@ const Widget = () => {
           </p>
         </div>
       </div>
-      <h4>Featured on Mars</h4>
+      <h4 className="text-xl px-4 py-4">Featured on Mars</h4>
       <div className="right-sidebar-div-1">
         <div className="right-sidebar-div-2">
           <img src={comment} alt="pen" width="18" />
@@ -45,7 +45,7 @@ const Widget = () => {
           </p>
         </div>
       </div>
-      <h4>Hot Meta Posts</h4>
+      <h4 className="text-xl px-4 py-4">Hot Meta Posts</h4>
       <div className="right-sidebar-div-1">
         <div className="right-sidebar-div-2">
           <p>38</p>
